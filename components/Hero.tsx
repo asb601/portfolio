@@ -63,8 +63,8 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="text-lg md:text-xl text-textMuted mb-10 max-w-2xl mx-auto leading-relaxed"
         >
-          Building reliable software, backend systems, and products that solve
-          real problems.
+          Building software, backend systems, and AI-powered products that
+          solve real problems.
         </motion.p>
 
         <motion.div
