@@ -66,7 +66,7 @@ export default function About() {
                 <IconBrandGithub className="w-6 h-6" />
               </motion.a>
               <motion.a
-                href="https://linkedin.com/in/a-sai-bharath"
+                href="https://www.linkedin.com/in/a-sai-bharath-b414662ab/"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1, y: -2 }}

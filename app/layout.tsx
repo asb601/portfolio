@@ -17,12 +17,12 @@ const rajdhani = Rajdhani({
 
 export const metadata: Metadata = {
   title: "A Sai Bharath | Software Engineer",
-  description: "Software Engineer specializing in AI Systems and Backend Engineering. Building production LLM systems, Graph RAG pipelines, and agentic workflows.",
-  keywords: ["AI Engineer", "Backend Engineer", "LangChain", "Graph RAG", "Python", "FastAPI", "Hyderabad", "LLM Developer"],
+  description: "Software Engineer focused on backend engineering, full-stack development, and building reliable software products.",
+  keywords: ["Software Engineer", "Backend Engineer", "Full-Stack Developer", "Python", "FastAPI", "Next.js", "Hyderabad"],
   authors: [{ name: "A Sai Bharath" }],
   openGraph: {
     title: "A Sai Bharath | Software Engineer",
-    description: "Software Engineer specializing in AI Systems and Backend Engineering. Building production LLM systems, Graph RAG pipelines, and agentic workflows.",
+    description: "Software Engineer focused on backend engineering, full-stack development, and building reliable software products.",
     url: "https://asaibharath.dev",
     siteName: "A Sai Bharath Portfolio",
     locale: "en_US",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "A Sai Bharath | Software Engineer",
-    description: "Software Engineer specializing in AI Systems and Backend Engineering.",
+    description: "Software Engineer focused on backend engineering, full-stack development, and building reliable software products.",
   },
 };
 

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { BackgroundBeams } from "@/components/ui/aceternity/background-beams";
 import { TextGenerateEffect } from "@/components/ui/aceternity/text-generate-effect";
@@ -7,44 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { IconBrandGithub, IconBrandLinkedin, IconDownload, IconChevronDown } from "@tabler/icons-react";
 
-const roles = [
-  "Software Engineer",
-  "AI Systems Builder",
-  "Backend Engineer",
-  "LLM Developer",
-  "Builder of things that work",
-];
-
 export default function Hero() {
-  const [currentRole, setCurrentRole] = useState(0);
-  const [displayText, setDisplayText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const currentText = roles[currentRole];
-    const timeout = setTimeout(
-      () => {
-        if (!isDeleting) {
-          if (displayText.length < currentText.length) {
-            setDisplayText(currentText.slice(0, displayText.length + 1));
-          } else {
-            setTimeout(() => setIsDeleting(true), 2000);
-          }
-        } else {
-          if (displayText.length > 0) {
-            setDisplayText(displayText.slice(0, -1));
-          } else {
-            setIsDeleting(false);
-            setCurrentRole((prev) => (prev + 1) % roles.length);
-          }
-        }
-      },
-      isDeleting ? 50 : 100
-    );
-
-    return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, currentRole]);
-
   const scrollToProjects = () => {
     const element = document.getElementById("projects");
     if (element) {
@@ -90,8 +53,7 @@ export default function Hero() {
           className="mb-6"
         >
           <h2 className="text-xl md:text-3xl font-medium text-accent font-geist">
-            {displayText}
-            <span className="animate-pulse">|</span>
+            Software Engineer
           </h2>
         </motion.div>
 
@@ -101,8 +63,8 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="text-lg md:text-xl text-textMuted mb-10 max-w-2xl mx-auto leading-relaxed"
         >
-          Building production AI systems, LLM backends, and agentic workflows
-          that actually work.
+          Building reliable software, backend systems, and products that solve
+          real problems.
         </motion.p>
 
         <motion.div
@@ -147,7 +109,7 @@ export default function Hero() {
             <IconBrandGithub className="w-6 h-6" />
           </motion.a>
           <motion.a
-            href="https://linkedin.com/in/a-sai-bharath"
+            href="https://www.linkedin.com/in/a-sai-bharath-b414662ab/"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.1, y: -2 }}

@@ -275,7 +275,7 @@ This project is open source and available for personal use.
 **A Sai Bharath**
 - Email: asb.bharath601@gmail.com
 - GitHub: [@asb601](https://github.com/asb601)
-- LinkedIn: [a-sai-bharath](https://linkedin.com/in/a-sai-bharath)
+- LinkedIn: [a-sai-bharath-b414662ab](https://www.linkedin.com/in/a-sai-bharath-b414662ab/)
 
 ---
 
