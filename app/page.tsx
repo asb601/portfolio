@@ -1,5 +1,5 @@
-import Nav from "@/components/Nav";
-import Hero from "@/components/Hero";
+import Masthead from "@/components/Masthead";
+import Rail from "@/components/Rail";
 import Summary from "@/components/Summary";
 import Experience from "@/components/Experience";
 import Work from "@/components/Work";
@@ -9,16 +9,18 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="site">
-      <Nav />
-      <main>
-        <Hero />
-        <Summary />
-        <Experience />
-        <Work />
-        <Skills />
-        <Contact />
-      </main>
+    <div className="page">
+      <Masthead />
+      <div className="rack">
+        <Rail />
+        <div className="field">
+          <Summary />
+          <Experience />
+          <Work />
+          <Skills />
+          <Contact />
+        </div>
+      </div>
       <Footer />
     </div>
   );

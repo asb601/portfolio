@@ -1,3 +1,5 @@
+import Panel from "@/components/Panel";
+
 type Link = { label: string; href: string };
 type Project = {
   name: string;
@@ -5,6 +7,7 @@ type Project = {
   live?: boolean;
   stack: string;
   blurb: string;
+  todo?: string;
   links: Link[];
 };
 
@@ -16,6 +19,7 @@ const PROJECTS: Project[] = [
       "FastAPI · LangGraph · OpenSearch · Azure OpenAI · Celery/Redis · PostgreSQL · DataFusion · Docker",
     blurb:
       "A 13-stage async ingestion pipeline (Celery + Redis) that turns messy ERP/CSV into hybrid OpenSearch indexes (BM25 + HNSW) — intelligence computed at ingestion, never at query time. The query engine reranks with RRF and gates on a deterministic planner: high-confidence queries take a fast DataFusion path (~1–2s, zero LLM calls); multi-hop queries fall back to a LangGraph agent loop bounded to ≤14 tool calls. Value-validated joins via GIN-indexed array overlap, multi-tenant isolation at every layer.",
+    todo: "TODO: replace with corrected freelance copy",
     links: [],
   },
   {
@@ -59,44 +63,38 @@ const PROJECTS: Project[] = [
 
 export default function Work() {
   return (
-    <section id="work" className="section band">
-      <div className="wrap">
-        <p className="eyebrow">
-          <span className="eyebrow__cmd">ls <b>./projects</b></span>
-          <span className="eyebrow__meta">4 systems</span>
-        </p>
-
-        <div className="entries">
-          {PROJECTS.map((p) => (
-            <article key={p.name} className="entry proj">
-              <div className="entry__head">
-                <h3 className="entry__title">{p.name}</h3>
-                <span className={`proj__status${p.live ? " proj__status--live" : ""}`}>
-                  {p.live && <span className="proj__dot" aria-hidden="true" />}
-                  {p.status}
-                </span>
+    <Panel id="work" label="Selected Work" index="03">
+      <div className="entries">
+        {PROJECTS.map((p) => (
+          <article key={p.name} className="entry">
+            <div className="entry__head">
+              <h3 className="entry__title">{p.name}</h3>
+              <span className="proj__status">
+                {p.live && <span className="proj__dot" aria-hidden="true" />}
+                {p.status}
+              </span>
+            </div>
+            <p className="proj__stack">{p.stack}</p>
+            <p className="proj__blurb">{p.blurb}</p>
+            {p.todo && <p className="proj__todo">{p.todo}</p>}
+            {p.links.length > 0 && (
+              <div className="proj__links">
+                {p.links.map((l) => (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn"
+                  >
+                    {l.label} ↗
+                  </a>
+                ))}
               </div>
-              <p className="proj__stack mono">{p.stack}</p>
-              <p className="proj__blurb">{p.blurb}</p>
-              {p.links.length > 0 && (
-                <div className="proj__links">
-                  {p.links.map((l) => (
-                    <a
-                      key={l.href}
-                      href={l.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn"
-                    >
-                      {l.label} ↗
-                    </a>
-                  ))}
-                </div>
-              )}
-            </article>
-          ))}
-        </div>
+            )}
+          </article>
+        ))}
       </div>
-    </section>
+    </Panel>
   );
 }

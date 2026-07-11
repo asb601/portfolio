@@ -1,48 +1,39 @@
+import Panel from "@/components/Panel";
+
 const GROUPS: { title: string; items: string }[] = [
   {
-    title: "AI / LLM",
+    title: "Techniques",
     items:
-      "LLM systems · RAG · LangGraph · LangChain · agentic workflows · tool-calling · hybrid retrieval (BM25 + vector/HNSW) · RRF reranking · semantic routing · prompt engineering · Neo4j Graph RAG · pgvector · OpenSearch · evaluation & guardrails",
+      "RAG · hybrid retrieval (BM25 + HNSW) · RRF reranking · semantic routing · Graph RAG · agentic workflows · tool-calling · evaluation & guardrails · prompt engineering",
   },
   {
-    title: "Backend",
+    title: "Frameworks & Libraries",
     items:
-      "Python · FastAPI (async) · Celery + Redis · Node.js · REST APIs · microservices · asyncpg · SQLAlchemy 2.0 (async) · Pydantic",
+      "LangGraph · LangChain · FastAPI (async) · Celery + Redis · Pydantic · SQLAlchemy 2.0 (async) · asyncpg · PyArrow · React · Next.js",
   },
   {
-    title: "Data",
+    title: "Datastores",
     items:
-      "PostgreSQL · MongoDB · Neo4j · Parquet / PyArrow · DataFusion · DuckDB · vector stores",
+      "PostgreSQL (incl. pgvector) · OpenSearch · Neo4j · MongoDB · DuckDB · Parquet · DataFusion",
   },
   {
-    title: "Cloud / DevOps",
+    title: "Languages & Infra",
     items:
-      "Azure OpenAI · Azure Blob · AWS (EC2 / S3) · Docker · GitHub Actions · CI/CD · Vercel",
-  },
-  {
-    title: "Frontend",
-    items: "React · Next.js · TypeScript · Tailwind",
+      "Python · TypeScript · Node.js · Azure OpenAI · Azure Blob · AWS (EC2 / S3) · Docker · GitHub Actions · CI/CD · Vercel",
   },
 ];
 
 export default function Skills() {
   return (
-    <section id="skills" className="section">
-      <div className="wrap">
-        <p className="eyebrow">
-          <span className="eyebrow__cmd">cat <b>stack.json</b></span>
-          <span className="eyebrow__meta">tooling</span>
-        </p>
-
-        <dl className="skills">
-          {GROUPS.map((g) => (
-            <div key={g.title} className="skills__row">
-              <dt className="skills__k">{g.title}</dt>
-              <dd className="skills__v">{g.items}</dd>
-            </div>
-          ))}
-        </dl>
-      </div>
-    </section>
+    <Panel id="stack" label="Stack" index="04">
+      <dl className="stack">
+        {GROUPS.map((g) => (
+          <div key={g.title} className="stack__row">
+            <dt className="stack__k">{g.title}</dt>
+            <dd className="stack__v">{g.items}</dd>
+          </div>
+        ))}
+      </dl>
+    </Panel>
   );
 }
