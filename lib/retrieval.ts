@@ -47,7 +47,7 @@ export const CHUNKS: Chunk[] = [
     section: "experience",
     label: "Experience",
     answer:
-      "At NCR Atleos (Hyderabad, since Feb 2025) I built a Graph RAG pipeline on LangChain + Neo4j for internal developer tooling, engineered LLM services on Azure OpenAI with prompt pipelines and retrieval validation, and set up GitHub Actions CI/CD that removed manual deployment steps across the team.",
+      "At NCR Atleos (Hyderabad) I'm an Associate Software Engineer (since Oct 2025), building internal AI/automation tooling on top of production LLM and retrieval services. Before that, as a Software Developer Intern (Feb–Oct 2025), I built a Graph RAG pipeline on LangChain + Neo4j for internal developer tooling, engineered LLM services on Azure OpenAI with prompt pipelines and retrieval validation, and set up GitHub Actions CI/CD that removed manual deployment steps across the team.",
     strong: ["ncr atleos", "ncr", "atleos", "where does he work", "his job"],
     keywords: [
       "experience", "job", "company", "employer", "career",
@@ -138,7 +138,7 @@ export const CHUNKS: Chunk[] = [
     section: "skills",
     label: "Skills",
     answer:
-      "Backend: Python + FastAPI (async), Celery/Redis, SQLAlchemy/asyncpg. AI layer: LangGraph, LangChain, hybrid retrieval (BM25 + vector/HNSW), RRF reranking, Neo4j Graph RAG, pgvector, OpenSearch. Data: PostgreSQL, MongoDB, Neo4j. Infra: Azure OpenAI, AWS, Docker, GitHub Actions. Frontend: React, Next.js, TypeScript.",
+      "Techniques: RAG, hybrid retrieval (BM25 + HNSW), RRF reranking, semantic routing, Graph RAG, agentic workflows, tool-calling, evaluation & guardrails. Frameworks & libraries: LangGraph, LangChain, FastAPI (async), Celery + Redis, Pydantic, SQLAlchemy 2.0, asyncpg, React, Next.js. Datastores: PostgreSQL (with the pgvector extension), OpenSearch, Neo4j, MongoDB, DuckDB, Parquet/DataFusion. Languages & infra: Python, TypeScript, Node.js, Azure OpenAI, AWS (EC2/S3), Docker, GitHub Actions, Vercel.",
     strong: ["stack", "skills", "tech stack", "what does he use", "technologies"],
     keywords: [
       "tech", "tools", "languages", "language", "python", "fastapi", "langgraph",
