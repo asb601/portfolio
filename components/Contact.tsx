@@ -1,275 +1,146 @@
 "use client";
-import React, { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { Meteors } from "@/components/ui/aceternity/meteor-effect";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import {
-  IconBrandGithub,
-  IconBrandLinkedin,
-  IconMail,
-  IconSend,
-} from "@tabler/icons-react";
+
+import { useState } from "react";
+
+type Status = "idle" | "sending" | "success" | "error";
 
 export default function Contact() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<Status>("idle");
 
-  const handleChange = (
+  const onChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  ) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setIsSubmitting(true);
-
+    setStatus("sending");
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE", // Replace with your Web3Forms access key
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-          subject: `New Portfolio Contact from ${formData.name}`,
+          access_key:
+            process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE",
+          subject: `Portfolio message from ${form.name}`,
+          ...form,
         }),
       });
-
-      const result = await response.json();
-
-      if (result.success) {
-        setIsSubmitting(false);
-        setSubmitStatus("success");
-        setFormData({ name: "", email: "", message: "" });
-
-        setTimeout(() => {
-          setSubmitStatus("idle");
-        }, 5000);
-      } else {
-        throw new Error("Failed to send message");
-      }
-    } catch (error) {
-      console.error("Error sending message:", error);
-      setIsSubmitting(false);
-      setSubmitStatus("error");
-
-      setTimeout(() => {
-        setSubmitStatus("idle");
-      }, 5000);
+      const data = await res.json();
+      if (data.success) {
+        setStatus("success");
+        setForm({ name: "", email: "", message: "" });
+        setTimeout(() => setStatus("idle"), 6000);
+      } else throw new Error("failed");
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 6000);
     }
-  };
+  }
 
   return (
-    <section
-      id="contact"
-      ref={ref}
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-surface/50 relative overflow-hidden"
-    >
-      <Meteors number={30} />
+    <section id="contact" className="section">
+      <div className="wrap">
+        <p className="eyebrow">
+          <span className="eyebrow__cmd">./<b>contact.sh</b></span>
+          <span className="eyebrow__meta">open to roles</span>
+        </p>
 
-      <div className="max-w-3xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-4"
-        >
-          <h2 className="text-4xl md:text-5xl font-bold font-geist mb-4">
-            Get In <span className="text-primary">Touch</span>
-          </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full mb-6" />
-          <p className="text-lg text-textMuted max-w-2xl mx-auto leading-relaxed">
-            I&apos;m open to new opportunities and interesting projects. Whether you
-            have a question or just want to say hi — my inbox is always open.
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-center mb-8"
-        >
-          <a
-            href="mailto:asb.bharath601@gmail.com"
-            className="text-2xl md:text-3xl font-bold text-primary hover:text-accent transition-colors inline-block"
-          >
-            asb.bharath601@gmail.com
-          </a>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex justify-center gap-4 mb-12"
-        >
-          <motion.a
-            href="https://github.com/asb601"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, y: -2 }}
-            className="w-14 h-14 rounded-full bg-surface border border-border flex items-center justify-center text-textPrimary hover:text-primary hover:border-primary transition-all"
-          >
-            <IconBrandGithub className="w-6 h-6" />
-          </motion.a>
-          <motion.a
-            href="https://www.linkedin.com/in/a-sai-bharath-b414662ab/"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1, y: -2 }}
-            className="w-14 h-14 rounded-full bg-surface border border-border flex items-center justify-center text-textPrimary hover:text-primary hover:border-primary transition-all"
-          >
-            <IconBrandLinkedin className="w-6 h-6" />
-          </motion.a>
-          <motion.a
-            href="mailto:asb.bharath601@gmail.com"
-            whileHover={{ scale: 1.1, y: -2 }}
-            className="w-14 h-14 rounded-full bg-surface border border-border flex items-center justify-center text-textPrimary hover:text-primary hover:border-primary transition-all"
-          >
-            <IconMail className="w-6 h-6" />
-          </motion.a>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-        >
-          <Card className="bg-surface border-border p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium text-textPrimary mb-2"
+        <div className="contact__grid">
+          <div className="contact__aside">
+            <p className="lede">
+              I&apos;m open to roles and interesting problems in AI backend and
+              LLM systems. The fastest way to reach me:
+            </p>
+            <a href="mailto:asb.bharath601@gmail.com" className="contact__email">
+              asb.bharath601@gmail.com
+            </a>
+            <ul className="contact__links">
+              <li>
+                <span className="contact__lk">github</span>
+                <a
+                  href="https://github.com/asb601"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link"
                 >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-background border border-border rounded-lg text-textPrimary focus:outline-none focus:border-primary transition-colors"
-                  placeholder="Your name"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-textPrimary mb-2"
+                  github.com/asb601
+                </a>
+              </li>
+              <li>
+                <span className="contact__lk">linkedin</span>
+                <a
+                  href="https://www.linkedin.com/in/a-sai-bharath-b414662ab/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link"
                 >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-background border border-border rounded-lg text-textPrimary focus:outline-none focus:border-primary transition-colors"
-                  placeholder="your.email@example.com"
-                />
-              </div>
+                  a-sai-bharath
+                </a>
+              </li>
+              <li>
+                <span className="contact__lk">phone</span>
+                <a href="tel:+916300824195" className="link">
+                  +91 63008 24195
+                </a>
+              </li>
+            </ul>
+          </div>
 
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-textPrimary mb-2"
-                >
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 bg-background border border-border rounded-lg text-textPrimary focus:outline-none focus:border-primary transition-colors resize-none"
-                  placeholder="Your message..."
-                />
-              </div>
-
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-primary hover:bg-primary/90 text-white py-6 text-lg"
-              >
-                {isSubmitting ? (
-                  <span className="flex items-center justify-center">
-                    <svg
-                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      ></circle>
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      ></path>
-                    </svg>
-                    Sending...
-                  </span>
-                ) : (
-                  <span className="flex items-center justify-center">
-                    <IconSend className="w-5 h-5 mr-2" />
-                    Send Message
-                  </span>
-                )}
-              </Button>
-
-              {submitStatus === "success" && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-center text-green-400 font-medium"
-                >
-                  ✓ Message sent successfully! I&apos;ll get back to you soon.
-                </motion.div>
-              )}
-
-              {submitStatus === "error" && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="text-center text-red-400 font-medium"
-                >
-                  ✗ Failed to send message. Please try again or email me directly.
-                </motion.div>
-              )}
-            </form>
-          </Card>
-        </motion.div>
+          <form className="contact__form" onSubmit={onSubmit}>
+            <label className="field">
+              <span className="field__label">name</span>
+              <input
+                className="field__input"
+                name="name"
+                value={form.name}
+                onChange={onChange}
+                required
+                autoComplete="name"
+              />
+            </label>
+            <label className="field">
+              <span className="field__label">email</span>
+              <input
+                className="field__input"
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={onChange}
+                required
+                autoComplete="email"
+              />
+            </label>
+            <label className="field">
+              <span className="field__label">message</span>
+              <textarea
+                className="field__input field__area"
+                name="message"
+                value={form.message}
+                onChange={onChange}
+                required
+                rows={5}
+              />
+            </label>
+            <button
+              className="btn btn--solid contact__submit"
+              type="submit"
+              disabled={status === "sending"}
+            >
+              {status === "sending" ? "sending…" : "send message ↵"}
+            </button>
+            {status === "success" && (
+              <p className="contact__note contact__note--ok">
+                Sent — I&apos;ll get back to you soon.
+              </p>
+            )}
+            {status === "error" && (
+              <p className="contact__note contact__note--err">
+                Couldn&apos;t send. Email me directly at asb.bharath601@gmail.com.
+              </p>
+            )}
+          </form>
+        </div>
       </div>
     </section>
   );

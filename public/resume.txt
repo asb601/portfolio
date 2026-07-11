@@ -1,0 +1,81 @@
+A SAI BHARATH
+AI Backend Engineer · LLM Systems · RAG Pipelines · Agentic Workflows
+
++91 63008 24195 · asb.bharath601@gmail.com · linkedin.com/in/asaibharath · github.com/asb601 · portfolio.codeen.in.net
+
+
+SUMMARY
+
+AI Backend Engineer specializing in production LLM systems — RAG pipelines,
+hybrid retrieval, and agentic orchestration. ~17 months building and shipping
+AI systems, including an enterprise AI analytics platform (async ingestion +
+hybrid retrieval + agentic query engine) and a live ML product with 56 real
+users on the Chrome Web Store. Strong in Python, FastAPI, LangGraph, Azure
+OpenAI, and vector/graph retrieval.
+
+
+SKILLS
+
+AI / LLM: LLM systems, Generative AI, RAG, LangGraph, LangChain, agentic
+workflows, tool-calling, hybrid retrieval (BM25 + vector/HNSW), RRF reranking,
+semantic routing, prompt engineering, Neo4j Graph RAG, pgvector, OpenSearch,
+evaluation & guardrails
+Backend: Python, FastAPI (async), Celery + Redis, Node.js, REST APIs,
+microservices, asyncpg, SQLAlchemy 2.0 (async), Pydantic
+Data: PostgreSQL, MongoDB, Neo4j, Parquet/PyArrow, DataFusion, DuckDB, vector
+stores
+Cloud / DevOps: Azure OpenAI, Azure Blob, AWS (EC2/S3), Docker, GitHub Actions,
+CI/CD, Vercel
+Frontend: React, Next.js, TypeScript, Tailwind
+
+
+EXPERIENCE
+
+NCR Atleos — Associate Software Engineer                    Oct 2025 – Present
+Hyderabad
+- [ADD: AI/automation you built here + one metric — hours saved / % faster /
+  tickets deflected / volume / users]
+- [ADD: one line of real backend scope or reliability signal, with a number]
+
+NCR Atleos — Software Developer Intern                      Feb 2025 – Oct 2025
+Hyderabad
+- Built a Graph RAG pipeline (LangChain + Neo4j) for internal developer tooling,
+  enabling context-aware Q&A over company knowledge bases through multi-step
+  reasoning.
+- Engineered LLM services on Azure OpenAI with prompt pipelines, retrieval
+  validation, and failure-handling logic for internal Q&A workflows.
+- Built GitHub Actions CI/CD that removed manual deployment steps and kept dev
+  and staging environments consistent across the team.
+
+
+PROJECTS
+
+Enterprise AI Analytics Platform — Freelance
+FastAPI · LangGraph · OpenSearch · Azure OpenAI · Celery/Redis · PostgreSQL ·
+DataFusion · Docker
+- Architected a 13-stage async ingestion pipeline (Celery + Redis) processing
+  enterprise ERP/CSV data through encoding detection, Parquet conversion,
+  LLM-based ontology resolution, and hybrid OpenSearch indexing (BM25 + HNSW) —
+  intelligence computed at ingestion, never at query time.
+- Built a hybrid-retrieval query engine with RRF reranking and a deterministic
+  planner gate: high-confidence queries route to a DataFusion executor (~1–2s,
+  zero LLM calls); complex multi-hop queries fall back to a LangGraph agent loop
+  (<=14 tool calls).
+- Designed value-validated join detection via GIN-indexed PostgreSQL array
+  overlap (O(log N) relationship discovery), with multi-tenant isolation
+  enforced at every layer.
+
+Dockwave — Agentic Document Intelligence · dockwave.vercel.app
+Next.js · FastAPI · LangChain · Neo4j · PostgreSQL · Azure OpenAI · AWS S3
+- Built a document platform extracting entities into a Neo4j knowledge graph for
+  context-aware querying across workspaces, capturing cross-document connections
+  plain vector search misses.
+- Engineered a retrieval-grading loop generating 3–4 queries per question over
+  6–7 iterations, scoring by confidence and relevance to auto-select the best
+  answer.
+
+PhisX — Real-Time Phishing Detection · Chrome Web Store (56 users)
+Python · Flask · React · AWS EC2 · Docker
+- Trained and deployed an ML model at 95%+ detection accuracy behind a live REST
+  API (EC2 + Docker), serving 56 real users through a Chrome extension with
+  real-time phishing alerts.
